@@ -9,10 +9,10 @@ const Booking = require("../models/booking");
 
 
 
-router.get("/",  (req,res)=>{
+router.get("/",  async(req,res)=>{
 	try{
-	const users =   User.find();
-		res.json(users);
+	const users =  await User.find();
+		res.send(users);
 	}
 	catch(err){
 		res.status(500).json({message: err.message})

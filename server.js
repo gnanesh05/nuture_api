@@ -6,7 +6,8 @@ const bodyParser = require("body-parser");
 require('dotenv').config();
 app.use(express.static(__dirname));
 
-var url = process.env.DATABASE_URL ||"mongodb://localhost/api";
+//process.env.DATABASE_URL ||
+var url = "mongodb://localhost/api";
 
 mongoose.connect(url,{
 	useNewUrlParser: true,
