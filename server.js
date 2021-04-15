@@ -3,10 +3,10 @@ const app = express();
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 
-
+require('dotenv').config();
 app.use(express.static(__dirname));
 
-var url = "mongodb+srv://gnanesh:gnanesh@cluster0.ha16l.mongodb.net/notesapp?retryWrites=true&w=majority"||"mongodb://localhost/api";
+var url = process.env.DATABASE_URL ||"mongodb://localhost/api";
 
 mongoose.connect(url,{
 	useNewUrlParser: true,

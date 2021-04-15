@@ -5,7 +5,7 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const Advisor = require("../models/advisor");
 const Booking = require("../models/booking");
-const user_check = require("../middleware/check_user");
+
 
 
 
@@ -40,7 +40,7 @@ router.post("/register",  (req,res)=>{
 			   const token = jwt.sign({
 						email: user.email,
 						userId: user._id
-					},"secretKey",
+					},process.env.SECERET_KEY,
 							{
 						expiresIn: "1h"
 					});
