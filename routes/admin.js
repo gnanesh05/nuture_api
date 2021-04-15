@@ -30,7 +30,7 @@ router.post("/advisor", async (req,res)=>{
 	}
 	catch(err)
 		{
-			res.status(400).send("bad request");
+		  res.status(400).json({message: err.message})
 		}
 })
 module.exports = router;

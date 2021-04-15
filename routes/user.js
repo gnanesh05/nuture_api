@@ -50,7 +50,7 @@ router.post("/register",  (req,res)=>{
 				})
 		})
 			.catch(err=>{
-			res.status(500).send("400_BAD_REQUEST ");
+			res.status(500).send(err.message);
 		})
 		
 			
