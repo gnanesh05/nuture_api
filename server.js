@@ -11,7 +11,7 @@ app.use(express.static(__dirname));
 var url = process.env.DATABASE_URL || "mongodb://localhost/api";
 
 mongoose
-     .connect( uri, { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true })
+     .connect( url, { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true })
      .then(() => console.log( 'Database Connected' ))
      .catch(err => console.log( err ));
 
