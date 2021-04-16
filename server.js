@@ -7,8 +7,8 @@ require('dotenv').config();
 app.use(express.static(__dirname));
 
 //
-//console.log(process.env.DATABASE_URL);
-var url = process.env.DATABASE_URL ||"mongodb://localhost/api";
+//console.log(process.env.DATABASE_URL); process.env.DATABASE_URL ||
+var url = "mongodb://localhost/api";
 
 mongoose.connect(url,{
 	useNewUrlParser: true,

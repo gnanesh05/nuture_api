@@ -5,16 +5,7 @@ const Advisor = require("../models/advisor")
 
 
 
-router.get("/", async (req,res)=>{
-	try{
-	const advisors = await  Advisor.find();
-		res.json(advisors);
-	}
-	catch(err){
-		res.status(500).json({message: err.message})
-}
-	
-});
+
 
 router.post("/advisor", async (req,res)=>{
 	console.log(req.body.name);
@@ -26,11 +17,11 @@ router.post("/advisor", async (req,res)=>{
 	
 	try{
 	    await advisor.save()
-		res.status(200).send("created");
+		res.status(200).send("200_OK");
 	}
 	catch(err)
 		{
-		  res.status(400).json({message: err.message})
+		  return res.status(400).send("400_BAD_REQUEST");
 		}
 })
 module.exports = router;

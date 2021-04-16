@@ -9,24 +9,14 @@ const Booking = require("../models/booking");
 
 
 
-router.get("/",  async(req,res)=>{
-	try{
-	const users =  await User.find();
-		res.send(users);
-	}
-	catch(err){
-		res.status(500).send(err.message)
-}
-	
-	
-});
+
 
 router.post("/register",  (req,res)=>{
 	
 	bcrypt.hash(req.body.password,10,(err,hash)=>{
 		if(err)
 			{
-				return res.status(500).send(err.message);
+				return res.status(500).send("");
 			}
 		else{
 		const user =  new User({
@@ -50,7 +40,7 @@ router.post("/register",  (req,res)=>{
 				})
 		})
 			.catch(err=>{
-			res.status(500).send(err.message);
+			res.status(500).send("");
 		})
 		
 			
@@ -71,7 +61,7 @@ router.post("/login", (req, res)=>{
 			}
 		bcrypt.compare(req.body.password, user[0].password,(err,result)=>{
 			if(err)
-			{return res.status(401).send("400_BAD_REQUEST ")
+			{return res.status(401).send("401_AUTHENTICATION_ERROR  ")
 			}
 			if(result)
 				{
@@ -84,12 +74,12 @@ router.post("/login", (req, res)=>{
 					});
 					
 					return res.status(200).json({
-			
+			            "status": "200_OK",
 						"token": token,
 						"id": user[0]._id
 					});
 				}
-			return res.status(401).send("400_BAD_REQUEST ")
+			return res.status(401).send("401_AUTHENTICATION_ERROR ")
 		})
 		
 	})
@@ -140,7 +130,7 @@ router.post("/:userid/advisor/:advisorid", (req,res)=>{
 						}
 					})
 					booking.save();
-					return res.status(200).send("booked");
+					return res.status(200).send("200_OK");
 						}
 				})
 			}
