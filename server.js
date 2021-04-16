@@ -6,13 +6,15 @@ const bodyParser = require("body-parser");
 require('dotenv').config();
 app.use(express.static(__dirname));
 
+//
+//console.log(process.env.DATABASE_URL); 
+var url = process.env.DATABASE_URL || "mongodb://localhost/api";
 
-var url = process.env.DATABASE_URL ||"mongodb://localhost/api";
+mongoose
+     .connect( uri, { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true })
+     .then(() => console.log( 'Database Connected' ))
+     .catch(err => console.log( err ));
 
-mongoose.connect(url,{
-	useNewUrlParser: true,
-	useUnifiedTopology: true
-});
 app.use(express.json());
 
 app.use(bodyParser.urlencoded({
