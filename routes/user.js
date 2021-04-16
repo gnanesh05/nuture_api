@@ -91,9 +91,9 @@ router.post("/login", (req, res)=>{
 })
 
 
-router.get("/:id/advisor", (req,res)=>{
+router.get("/:id/advisor", async (req,res)=>{
   try{
-	  const advisors =  Advisor.find();
+	  const advisors =  await Advisor.find();
 	  res.status(200).json({
 		  "advisors": advisors
 	  })
